@@ -9,7 +9,7 @@
     <% }); %>
 <% } %>
 
-<% if(success_msg !== '') { $>
+<% if(success_msg !== '') { %>
 
     <div class="alert alert-success alert-dismissible fade show" role="alert">
             <%= success_msg %>
@@ -18,9 +18,9 @@
             </button>
           </div>
 
-<$ } %>
+<% } %>
 
-<% if(error_msg != '') { $>
+<% if(error_msg != '') { %>
     
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <%= error_msg %>
@@ -31,7 +31,7 @@
 
 <$ } %>
 
-<% if(error != '') { $>
+<% if(error != '') { %>
     
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <%= error %>
@@ -40,4 +40,4 @@
           </button>
         </div>
 
-<$ } %>
+<% } %>

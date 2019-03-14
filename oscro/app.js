@@ -10,7 +10,7 @@ const passport = require('passport');
 const app = express ();
 
 // Passport config
-require('./config/passport')(passport);
+//require('./config/passport')(passport);
 
 //Connect DB Config
 // const db = require() <-- Database Connection
@@ -32,8 +32,8 @@ app.use(
   );
 
 // Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Connect flash
 app.use(flash());

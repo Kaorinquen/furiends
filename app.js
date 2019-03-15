@@ -10,10 +10,10 @@ const passport = require('passport');
 const app = express ();
 
 // Passport config
-//require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 //Connect DB Config
-// const db = require() <-- Database Connection
+const db = require("./models") //<-- Database Connection
 
 //EJS
 app.use(expressLayouts);
@@ -21,6 +21,10 @@ app.set('view engine', 'ejs');
 
 //Bodyparser
 app.use(express.urlencoded({ extended: false}));
+
+// // Sets up the Express app to handle data parsing
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
 //Express Session Middleware
 app.use(
@@ -31,9 +35,9 @@ app.use(
     })
   );
 
-// Passport middleware
-// app.use(passport.initialize());
-// app.use(passport.session());
+//Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Connect flash
 app.use(flash());
@@ -50,7 +54,37 @@ app.use(function(req, res, next) {
 app.use("/", require('./routes/index'));
 app.use("/users", require('./routes/users'));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
-app.listen(PORT, console.log("Listening on PORT: http://localhost:" + PORT));
+db.sequelize.sync({}).then(function() {
+//   if(dev){
+//   db.User.create(
+//     [
+//       {
+//         username: "Oscro",
+//         email: "oscro@gmail.com",
+//         password: ""
+//       }
+//     ]
+//   )
+// };
+  app.listen(PORT, function() {
+    console.log("Listening on PORT: http://localhost:" + PORT)
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -34,8 +34,9 @@ module.exports = function(passport) {
   });
 
   passport.deserializeUser(function(id, done) {
-    db.User.findOne({ where: { id: id } }).then( function(err, user) {
-      done(err, user);
+    db.User.findOne({ where: { id: id } }).then( function(user) {
+      console.log(user)
+      done(null, user);
     });
   });
 };

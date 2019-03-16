@@ -74,35 +74,27 @@ router.post('/register', (req, res) => {
   }
 });
 
-//Login Handle
- router.post('/login', (req, res, next) => {
-   passport.authenticate('local', {
-     successRedirect: '/dashboard',
-     failureRedirect: '/users/login',
-     //failureRedirect: '/users/error',
-     failureFlash: true
-   })(req, res, next);
-});
+//  router.post('/login', 
+//   passport.authenticate('local', { 
+//     failureRedirect: '/users/login',
+//     successRedirect: '/dashboard',  
+//     failureFlash: true })
+//   // function(req, res) {
+//   //   // res.redirect('/dashboard');
+//   //   // res.redirect('http://localhost:3000/dashboard')
+//   //   res.redirect("dashboard");
+//   // });
+//  );
 
-//router
-//.post('/login', (req, res, next) => {
-    //passport.authenticate('local', {
-      //successRedirect: '/dashboard',
-      //failureRedirect: '/users/login',
-      //failureRedirect: '/users/error',
-      //failureFlash: true
-    //})(req, res, next);
-//})
-//.get('/login', function(req, res, next) {
-  //passport.authenticate('local', function(err, user, info) {
-    //if (err) { return next(err); }
-    //if (!user) { return res.redirect('/login'); }
-    //req.logIn(user, function(err) {
-      //if (err) { return next(err); }
-      //return res.redirect('/dashboard' + user.username);
-    //});
-  //})(req, res, next);
-//});
+//Login Handle
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    // successRedirect: 'http://localhost:3000/dashboard',
+    successRedirect: '/dashboard',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })(req, res, next);
+});
 
 //Logout
 router.get('/logout', (req, res) => {

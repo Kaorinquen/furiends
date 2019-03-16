@@ -74,22 +74,9 @@ router.post('/register', (req, res) => {
   }
 });
 
-//  router.post('/login', 
-//   passport.authenticate('local', { 
-//     failureRedirect: '/users/login',
-//     successRedirect: '/dashboard',  
-//     failureFlash: true })
-//   // function(req, res) {
-//   //   // res.redirect('/dashboard');
-//   //   // res.redirect('http://localhost:3000/dashboard')
-//   //   res.redirect("dashboard");
-//   // });
-//  );
-
 //Login Handle
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    // successRedirect: 'http://localhost:3000/dashboard',
     successRedirect: '/dashboard',
     failureRedirect: '/users/login',
     failureFlash: true

@@ -1,6 +1,6 @@
 // This model is for grabbing info from the "allPics" table in the database
 module.exports = function (sequelize, DataTypes) {
-  var Users = sequelize.define("Users", {
+  var User = sequelize.define("User", {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     userName: DataTypes.STRING,
@@ -23,5 +23,5 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   allPics.belongsTo(Users)
-  return Users, allPics;
+  return User, allPics;
 };

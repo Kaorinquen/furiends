@@ -2,6 +2,31 @@
   line-height: 2.5;
 }
 
+header{
+background: darkturquoise;
+border-bottom: whitesmoke solid 0.5px;
+}
+
+a{
+font-weight: bolder;
+font-size: 100px;
+color: whitesmoke
+}
+
+#login{
+border:tomato solid 3px;
+background: darkturquoise;
+color: tomato;
+
+
+}
+
+#register{
+border:tomato solid 3px;
+background: darkturquoise;
+color: tomato;
+}
+
 #container {
   width: 100%;
   max-width: 700px;
@@ -63,6 +88,12 @@ input{
   justify-content: center;
   align-items: center;
   }
+  #loglogo{
+    height: 25.81px;
+    width: 24px;
+    align-content: center;
+    text-align: center;
+  }
 .modal-content{
   height: 220px;
   width: 500px;
@@ -92,7 +123,7 @@ input{
   margin-bottom: 20px;
 }
 .box.one {
-  height: 200px;
+  height: 250px;
   background-color: #d77575;
 }
 .box.two {
@@ -109,9 +140,10 @@ input{
 }
 .box.five {
   background-color: #bb8ed8;
-  height: 600px;
+  height: 500px;
 }
 .box.six {
   background-color: #baafb1;
   height: 200px;
 }
+

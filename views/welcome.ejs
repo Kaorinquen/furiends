@@ -1,17 +1,63 @@
-<div class="welcomeBg">
+<header>
+  <nav class="navbar">
+          <nav class="navbar">
+                  <a class="navbar-brand" href="text/html">
+                          <i class="fa fa-paw" aria-hidden="true"></i>
+                          FURiends
+                  </a>
 
-<div class="row mt-5">
-        <div class="col-md-6 m-auto">
-          <div class="card card-body text-center boxy">
-            <h1><i class="fab fa fa-paw fa-3x"></i></h1>
-            <h1>Furiends</h1>
-            <p>Create an account or login</p>
-            <a href="/users/register" class="btn btn-primary btn-block mb-2"
-              >Register</a
-            >
-            <a href="/users/login" class="btn btn-secondary btn-block">Login</a>
-          </div>
-        </div>
-      </div>
+          </nav>
 
+          <ul class="nav justify-content-end">
+                  <li class="nav-item">
+                          <a href="/users/login"><button class="btn" id="login" type="button">LOGIN</button></a>
+                          <a href="users/register"><button class="btn" id="register" type="button">SIGN-UP</button></a>
+  </nav>
+</header>
+<!--MODAL for Register-->
+<div class="bg-modal">
+  <div class="modal-contents">
+
+          <div class="close">+</div>
+          <img src="" alt="#">
+          <form action="">
+                  <input type="text" placeholder="User Name">
+                  <input type="email" placeholder="E-Mail">
+                  <input type="password" placeholder="Password">
+                  <input type="password" placeholder="Confirm Password">
+                  <a href="#" class="btn btn-primary">Submit</a>
+          </form>
+
+  </div>
 </div>
+<!--MODAL FOR Login-->
+<div class="modal">
+  <div class="modal-content">
+
+          <div class="close">+</div>
+          <img id="loglogo" src="" alt="#">
+          <form action="">
+                  <input type="text" placeholder="User Name">
+                  <input type="password" placeholder="Password">
+
+                  <a href="#" class="btn btn-primary">Submit</a>
+          </form>
+
+  </div>
+</div>
+<!--Masonry content(IMAGES)-->
+
+<div id="container" class="cols">
+  <div class="box one"></div>
+  <div class="box two"></div>
+  <div class="box one"></div>
+  <div class="box three"></div>
+  <div class="box two"></div>
+  <div class="box five"></div>
+  <div class="box one"></div>
+  <div class="box two"></div>
+  <div class="box six"></div>
+  <div class="box three"></div>
+  <div class="box two"></div>
+</div>
+<div class="btn btn-primary">Back to Top</div>

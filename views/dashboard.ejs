@@ -1,3 +1,11 @@
 <h1 class="mt-4">Dashboard</h1>
 <p class="lead mb-3">Welcome <%= user.userName %></p>
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
+
+<form action="/users/upload" method="post" enctype="multipart/form-data">
+    comment: <input id="comment" type="textarea" name="comment"><br>
+    Your image: <input type="file" name="image"><br>
+    <input type="hidden" name="userName" value="<%= user.userName %>"></input>
+    <input type="hidden" name="id" value="<%= user.id %>"></input>
+    <button type="submit" value="Submit">Upload</button>
+</form>

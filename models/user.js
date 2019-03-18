@@ -1,4 +1,3 @@
-// This model is for grabbing info from the "allPics" table in the database
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     email: DataTypes.STRING,
@@ -11,7 +10,8 @@ module.exports = function (sequelize, DataTypes) {
     location: DataTypes.STRING,
     disabled: {
       type: DataTypes.BOOLEAN,
-      default: false
+      allowNull: false,
+      defaultValue: false
     }
   });
 

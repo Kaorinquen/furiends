@@ -4,6 +4,17 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const db = require('../models');
 
+var cloudinary = require('cloudinary');
+var multer = require("multer");
+var Datauri = require('datauri');
+var path = require('path');
+
+//Image upload middleware and buffer converter
+var storage = multer.memoryStorage();
+var multerUpload = multer(storage).single("image");
+var dUri = new Datauri();
+const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
+
 // LOGIN EJS <% include ./partials/messages %>
 // REGISTER EJS <% include ./partials/messages %>
 
@@ -101,6 +112,26 @@ router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
+});
+
+router.post("/upload", multerUpload, (req, res) => {
+  if (req.file) {
+    var file = dataUri(req).content;
+    let { comment, userName, id } = req.body;
+    cloudinary.uploader.upload(file, (result) => {
+      db.allPics
+        .create({
+          url: result.secure_url,
+          comment: comment,
+          username: userName,
+          showPhoto: true,
+          UserId: id
+        })
+        .then(function (result) {
+          res.redirect('/dashboard');
+        });
+    });
+  }
 });
 
 module.exports = router;

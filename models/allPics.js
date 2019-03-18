@@ -3,7 +3,11 @@ module.exports = function(sequelize, DataTypes) {
     url: DataTypes.STRING,
     comment: DataTypes.TEXT,
     username: DataTypes.STRING,
-    showPhoto: DataTypes.BOOLEAN
+    showPhoto: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
   });
 
   allPics.associate = function(models) {

@@ -1,3 +1,12 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+.welcomeBg{
+  background-image: url("http://santansun.com/wp-content/uploads/2018/11/5b7fdeab1900001d035028dc.jpeg");
+  height: 900px;
+}
+
+.boxy{
+  margin-top: 100px;
+}

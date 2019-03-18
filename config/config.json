@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "root",
     "database": "furiends",
     "host": "localhost",
     "dialect": "mysql",

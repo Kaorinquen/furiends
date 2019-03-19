@@ -1,0 +1,72 @@
+#container {
+    width: 100%;
+    max-width: 700px;
+    margin: 2em auto;
+}
+
+.bg-modal{
+background-color: rgba(0, 0, 0, 0.8);
+width: 100%;
+height: 100%;
+position: absolute;
+top: o;
+display: none;
+justify-content: center;
+align-items: center;
+}
+
+.modal-contents{
+    height: 350px;
+    width: 350px;
+    background: white;
+    text-align: center;
+    padding: 20px;
+}
+.cols {
+    -moz-column-count:3;
+    -moz-column-gap: 3%;
+    -moz-column-width: 30%;
+    -webkit-column-count:3;
+    -webkit-column-gap: 3%;
+    -webkit-column-width: 30%;
+    column-count: 3;
+    column-gap: 3%;
+    column-width: 30%;
+}
+.box {
+    margin-bottom: 20px;
+}
+.box.one {
+    height: 200px;
+    background-color: #d77575;
+}
+.box.two {
+    height: 300px;
+    background-color: #dcbc4c;
+}
+.box.three {
+    background-color: #a3ca3b;
+    height: 400px;
+}
+.box.four {
+    background-color: #3daee3;
+    height: 500px;
+}
+.box.five {
+    background-color: #bb8ed8;
+    height: 600px;
+}
+.box.six {
+    background-color: #baafb1;
+    height: 200px;
+}
+
+.class{
+
+}
+.list-group{
+    
+}
+.petBio {
+
+}

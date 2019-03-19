@@ -1,6 +1,6 @@
 <div class="welcomeBg">
 
-<div class="row mt-5">
+<div class="row">
         <div class="col-md-6 m-auto">
           <div class="card card-body boxy">
             <h1 class="text-center mb-3">
@@ -9,13 +9,13 @@
             <% include ./partials/messages %>
             <form action="/users/register" method="POST">
               <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">Pet's Username</label>
                 <input
                   type="name"
                   id="name"
                   name="name"
                   class="form-control"
-                  placeholder="Enter Name"
+                  placeholder="Enter Your Pet's Username"
                   value="<%= typeof name != 'undefined' ? name : '' %>"
                 />
               </div>

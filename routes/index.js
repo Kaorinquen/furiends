@@ -13,8 +13,5 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>{
   })
 }
 );
-// router.get('/dashboard', (req, res) =>{ 
-//   res.send("HIIIII")
-// }
-// );
+
 module.exports = router; 

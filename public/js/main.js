@@ -3,14 +3,14 @@ var box = 2;
 $(window).scroll(function() {
   if ($(window).scrollTop() === $(document).height() - $(window).height()) {
     console.log(++box);
-    $("#container").append("<div class='box one'>box" + box + "</h1></div>");
-    $("#container").append("<div class='box two'>box" + box + "</h1></div>");
-    $("#container").append("<div class='box three'>box" + box + "</h1></div>");
-    $("#container").append("<div class='box two'>box" + box + "</h1></div>");
-    $("#container").append("<div class='box five'>box" + box + "</h1></div>");
-    $("#container").append("<div class='box one'>box" + box + "</h1></div>");
-    $("#container").append("<div class='box two'>box" + box + "</h1></div>");
-    $("#container").append("<div class='box six'>box" + box + "</h1></div>");
+    $("#container").append("<div class='box one'></div>");
+    $("#container").append("<div class='box two'></div>");
+    $("#container").append("<div class='box three'></div>");
+    $("#container").append("<div class='box two'></div>");
+    $("#container").append("<div class='box five'></div>");
+    $("#container").append("<div class='box one'></div>");
+    $("#container").append("<div class='box two'></div>");
+    $("#container").append("<div class='box six'></div>");
   }
   // } else{
   //   $(window).unbind("#container");

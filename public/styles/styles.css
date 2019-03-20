@@ -131,24 +131,42 @@
   .box.one {
     height: 250px;
     background-color: #d77575;
+    background-image: url("https://thumbs-prod.si-cdn.com/iTbyiLZHteLLpbU3yXfbjfVYNyU=/800x600/filters:no_upscale():focal(1151x151:1152x152)/https://public-media.si-cdn.com/filer/2e/ea/2eeab1bb-15c4-4722-8c34-2a45787b1ce5/istock-146923777.jpg");
+    background-size: cover;
+    background-position: center;
   }
   .box.two {
     height: 300px;
     background-color: #dcbc4c;
+    background-image: url("https://images.pexels.com/photos/236230/pexels-photo-236230.jpeg?cs=srgb&dl=adorable-animals-cats-236230.jpg&fm=jpg");
+    background-size: cover;
+
   }
   .box.three {
     background-color: #a3ca3b;
     height: 400px;
+    background-image: url("https://www.drusillas.co.uk/images/whats-on-card/redpanda-profile-400x400-984.jpg");
+    background-size: cover;
+    background-position: center;
   }
   .box.four {
     background-color: #3daee3;
     height: 500px;
+    background-image: url("https://columbuszoo.org/Media/columbus-zoo-aquarium/02-zoo-animals-lp_n-amer.jpg?sfvrsn=fe63d2a6_2&w=1280&h=840&mode=crop");
+    background-size: cover;
+    background-position: center;
   }
   .box.five {
     background-color: #bb8ed8;
     height: 500px;
+    background-image: url("https://i.ytimg.com/vi/NTcw012d2ag/maxresdefault.jpg");
+    background-size: cover;
+    background-position: center;
   }
   .box.six {
     background-color: #baafb1;
     height: 200px;
+    background-image: url("http://mymodernmet.com/wp/wp-content/uploads/2017/01/animal-selfies-5.jpg");
+    background-size: cover;
+    background-position: center;
   }

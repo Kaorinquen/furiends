@@ -35,3 +35,23 @@ $(document).ready(function() {
     $(".modal").css("display", "none");
   });
 });
+
+
+$("#uploadButton").on("click", function () {
+  event.preventDefault();
+  ("#uploadModal").trigger('focus')
+});
+
+$(".jumbotron").on(hover, function () {
+  $("#updateButton").show();
+  member.username.show();
+  member.bio.show();
+  member.species.show();
+  member.breed.show();
+}, 
+function () {
+  member.username.hide();
+  member.bio.hide();
+  member.species.hide();
+  member.breed.hide();
+});

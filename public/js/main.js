@@ -12,26 +12,29 @@ $(window).scroll(function() {
     $("#container").append("<div class='box two'></div>");
     $("#container").append("<div class='box six'></div>");
   }
-  // } else{
-  //   $(window).unbind("#container");
-  // }
 });
 
 //Click event for register modal
 $(document).ready(function() {
-  $("#register").on("click", function() {
-    $(".bg-modal").css("display", "block");
-  });
-  $(".close").click(function() {
-    $(".bg-modal").css("display", "none");
-  });
-});
-//Click event for login modal
-$(document).ready(function() {
-  $("#login").on("click", function() {
-    $(".modal").css("display", "block");
-  });
-  $(".close").click(function() {
-    $(".modal").css("display", "none");
+  
+
+  $("#uploadButton").on("click", function(){
+                ("#uploadModal").trigger('focus')
+        });
+
+        $('#uploadButton').on('shown.bs.modal', function () {
+          $('#uploadmodal').trigger('focus')
+  })
+  $(".jumbotron").on(hover, function () {
+          $("#updateButton").show();
+          member.username.show();
+          member.bio.show();
+          member.species.show();
+          member.breed.show();
+  }, function () {
+          member.username.hide();
+          member.bio.hide();
+          member.species.hide();
+          member.breed.hide();
   });
 });

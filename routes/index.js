@@ -21,7 +21,8 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>{
 router.get('/userprofile/:userId', ensureAuthenticated, (req, res) => {
 
   // Add variable that holds the user accessing the page
-  // let user = ? 
+  let userAccess = req.session.passport.user;
+  console.log("THIS IS THE SESSION USER: " + req.session.passport.user);
 
   // Variable that holds the profile page of the user being requested
   let userReq = req.params.userId; 
@@ -29,8 +30,12 @@ router.get('/userprofile/:userId', ensureAuthenticated, (req, res) => {
   db.User.findOne({ where: {  id: userReq } })
         .then(user => {
           // Condition that tests whether it is the User accessing their own page or that of another user
-          if (user){
-          res.send("USER: " + userReq);
+          if (userAccess == userReq){
+          // Accessing the own profile page
+          res.send("Accessing my own page and my ID is: " + userAccess);
+          } else {
+          // Accessing someone else's page
+          res.send("Accessing another user's page whose ID is: " + userReq);
           }
         }).catch(err => console.log(err));
 });

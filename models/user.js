@@ -22,6 +22,6 @@ module.exports = function (sequelize, DataTypes) {
     showPhoto: DataTypes.BOOLEAN
   });
 
-  allPics.belongsTo(Users)
+  allPics.belongsTo(User)
   return User, allPics;
 };

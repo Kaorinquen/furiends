@@ -127,21 +127,3 @@ header{
   .box.six {
     background-color: #baafb1;
     height: 200px;
-  }
-  
-.jumbotron {
-background-image: url(https://pbs.twimg.com/media/D2B38AZW0AAMCQ4.jpg:large);   
-background-size:20px;
-
-}
-
-#wrapper .text {
-position:relative;
-bottom:30px;
-left:0px;
-visibility:hidden;
-}
-
-#wrapper:hover .text {
-visibility:visible;
-}

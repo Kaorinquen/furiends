@@ -8,7 +8,7 @@
   },
   "test": {
     "username": "root",
-    "password": "root",
+    "password": "thunder-cloud-atlas",
     "database": "furiends",
     "host": "localhost",
     "dialect": "mysql",

@@ -54,7 +54,7 @@ app.use(require('./routes/index'));
 app.use('/users', require('./routes/users'));
 
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 
 db.sequelize.sync({}).then(function() {
   app.listen(PORT, function() {

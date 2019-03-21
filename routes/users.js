@@ -39,7 +39,6 @@ router.post('/register', (req, res) => {
       password2
     });
   } else {
-    //res.send('pass');
     // Validation Pass
     db.User.findOne({ where: {email: email }}).then(user => {
       if (user) {
@@ -74,22 +73,9 @@ router.post('/register', (req, res) => {
   }
 });
 
-//  router.post('/login', 
-//   passport.authenticate('local', { 
-//     failureRedirect: '/users/login',
-//     successRedirect: '/dashboard',  
-//     failureFlash: true })
-//   // function(req, res) {
-//   //   // res.redirect('/dashboard');
-//   //   // res.redirect('http://localhost:3000/dashboard')
-//   //   res.redirect("dashboard");
-//   // });
-//  );
-
 //Login Handle
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    // successRedirect: 'http://localhost:3000/dashboard',
     successRedirect: '/dashboard',
     failureRedirect: '/users/login',
     failureFlash: true
@@ -102,5 +88,7 @@ router.get('/logout', (req, res) => {
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
 });
+
+
 
 module.exports = router;

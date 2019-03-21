@@ -4,7 +4,8 @@
     "password": "root",
     "database": "furiends",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": 3306
   },
   "test": {
     "username": "root",

@@ -1,10 +1,11 @@
 //  NPM bcryptjs | connect-flash | ejs | express | express-ejs-layouts | express-session | mongoose | passport | passport-local
-
+require("dotenv").config();
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+var cloudinary = require('cloudinary');
 
 const app = express();
 
@@ -13,6 +14,10 @@ require('./config/passport')(passport);
 
 //Connect DB Config
 const db = require('./models'); //<-- Database Connection
+
+//Middleware
+app.use(express.json());
+app.use(express.static("public"));
 
 //EJS
 app.use(expressLayouts);
@@ -24,6 +29,13 @@ app.use(express.urlencoded({ extended: true }));
 // // Sets up the Express app to handle data parsing
 // app.use(express.urlencoded({ extended: true }));
 // app.use(express.json());
+
+//coludinary config
+cloudinary.config({
+  cloud_name: process.env.cloud_name,
+  api_key: process.env.api_key,
+  api_secret: process.env.api_secret
+});
 
 //Express Session Middleware
 app.use(
@@ -52,7 +64,7 @@ app.use(function(req, res, next) {
 //Routes
 app.use(require('./routes/index'));
 app.use('/users', require('./routes/users'));
-
+require("./routes/apiRoutes.js")(app);
 
 const PORT = process.env.PORT || 3000;
 

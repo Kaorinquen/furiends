@@ -22,12 +22,6 @@ var API = {
       type: "GET",
       url: "/api/allOtherPicsUrl/" + offsetOther + "/" + userId
     });
-  },
-  updateUserInfo: function() {
-    return $.ajax({
-      type: "POST",
-      url: "/api/allOtherPicsUrl/" + offsetOther + "/" + userId
-    });
   }
 };
 

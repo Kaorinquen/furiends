@@ -18,7 +18,7 @@
 
 
 <div container>
-  <div class="jumbotron" id=userInfo>
+  <div class="jumbotron" id="userInfo" style=" background-image: url(<%= user.profilePic %>);">
     <div>
       <h1 class="display-4" id="othersName"> Hello <%= user.userName %>!</h1>
       <div id=></div>
@@ -35,9 +35,14 @@
         <h5>Joined</h5>
         <p id="userJoinDate"><%= user.createdAt %></p>
 
-        <button type="button" id="updateButton" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-          Upload new image
-        </button>
+        <div class="col-sm-6">
+          <button type="button" id="updateButton" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+            Upload new image
+          </button>
+          <button type="button" id="aboutButton" class="btn btn-primary" data-toggle="modal" data-target="#aboutModal">
+            Change profile info
+          </button>
+        </div>          
       </div>
     </div>
   </div>
@@ -60,6 +65,34 @@
             <input type="hidden" name="userName" value="<%= user.userName %>"></input>
             <input type="hidden" name="id" value="<%= user.id %>"></input>
             <button type="submit" value="Submit">Upload</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog" id="aboutModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update User Information</h5>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/api/userUpload" method="post">
+            Bio: <br><input type="textarea" name="bio" value="<%= user.bio %>"></input><br><br>
+            Species: <input type="textarea" name="species" value="<%= user.species %>"></input><br>
+            Breed: <input type="textarea" name="breed" value="<%= user.breed %>"></input><br>
+            Location: <input type="textarea" name="location" value="<%= user.location %>"></input><br> 
+            <input type="hidden" name="userName" value="<%= user.userName %>"></input>
+            <input type="hidden" name="id" value="<%= user.id %>"></input>
+            <button type="submit" value="Submit">Update</button>
           </form>
         </div>
         <div class="modal-footer">

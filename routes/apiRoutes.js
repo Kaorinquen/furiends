@@ -35,6 +35,23 @@ router.post("/api/upload", multerUpload, (req, res) => {
   }
 });
 
+router.post("/api/userUpload", (req, res) => {
+  let { bio, species, breed, location, id } = req.body;
+  db.User
+    .update({
+      bio: bio,
+      species: species,
+      breed: breed,
+      location: location
+    },
+      {
+        where: {id: id}
+      })
+    .then(function (result) {
+      return res.redirect('/dashboard');
+    });
+});
+
 // Get all pictures from the "allPics" table for front page
 router.get("/api/front/:offset", function(req, res) {
   var number = parseInt(req.params.offset);

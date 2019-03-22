@@ -6,13 +6,12 @@
                 FURiends
             </a>
         </nav>
-
         <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a href="/userprofile/<%= user.id %>">
-                    <button class="btn" id="login" type="btn"><%= user.userName %></button>
-                </a>
-                <a href="users/logout"><button class="btn" id="register" type="button">Logout</button></a>
+                <a href="/userprofile/<%= user.id %>" class="btn btn-succes" id="log"><%= user.userName %></a>
+                <a href="/users/logout" class="btn btn-success" id="log">Logout</a>
+            </li>
+        </ul>
     </nav>
 </header>
 

@@ -46,7 +46,8 @@ router.get('/userprofile/:userId', ensureAuthenticated, (req, res) => {
           } else {
           // Accessing someone else's page
           res.render("otherDashboard", {
-            page: userReq
+            page: userReq,
+            user: req.user
           })
           }
         }).catch(err => console.log(err));

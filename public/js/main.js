@@ -55,3 +55,11 @@ function () {
   member.species.hide();
   member.breed.hide();
 });
+
+// ====================================================
+// Front end logic for uploading pictures on dashboard.ejs
+var image = $("#image").val().trim();
+
+// $("#submit-photo").on("click", function {
+//  image.append("this");
+// });

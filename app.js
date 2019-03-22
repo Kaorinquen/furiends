@@ -64,11 +64,11 @@ app.use(function(req, res, next) {
 //Routes
 app.use(require('./routes/index'));
 app.use('/users', require('./routes/users'));
-require("./routes/apiRoutes.js")(app);
+app.use(require("./routes/apiRoutes.js"));
 
 const PORT = process.env.PORT || 8000;
 
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync({force: false}).then(function() {
   app.listen(PORT, function() {
     console.log('Listening on PORT: http://localhost:' + PORT);
   });

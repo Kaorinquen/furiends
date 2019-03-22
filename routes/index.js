@@ -15,8 +15,6 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>{
 }
 );
 
-<<<<<<< HEAD
-=======
 // Create User Route to separate pages and Ensure Authentication to view separate pages
 // Place condition that tests if the user is logged in
 // FEEL FREE TO CHANGE THIS
@@ -42,5 +40,4 @@ router.get('/userprofile/:userId', ensureAuthenticated, (req, res) => {
         }).catch(err => console.log(err));
 });
 
->>>>>>> 2b9012b0c18f424d6418963b839fec38a8cb2d3a
 module.exports = router; 

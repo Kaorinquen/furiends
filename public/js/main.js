@@ -25,17 +25,17 @@ $(document).ready(function() {
         $('#uploadButton').on('shown.bs.modal', function () {
           $('#uploadmodal').trigger('focus')
   })
-  $(".jumbotron").on(hover, function () {
-          $("#updateButton").show();
-          member.username.show();
-          member.bio.show();
-          member.species.show();
-          member.breed.show();
-  }, function () {
-          member.username.hide();
-          member.bio.hide();
-          member.species.hide();
-          member.breed.hide();
-  });
-});
+//   $(".jumbotron").on(hover, function () {
+// $(this).find(".text").fadeIn(200)
+//   // }, function () {
+//   //         member.username.hide();
+//   //         member.bio.hide();
+//   //         member.species.hide();
+//   //         member.breed.hide();
+//   });
+// });
+
+// $("#wrapper").on(hover, function(){
+//   $("#wrapper").fadeIn(200);
+// }
 

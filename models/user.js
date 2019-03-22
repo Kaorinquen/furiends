@@ -15,17 +15,5 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-<<<<<<< HEAD
-  var allPics = sequelize.define("allPics", {
-    url: DataTypes.STRING,
-    comment: DataTypes.TEXT,
-    username: DataTypes.STRING,
-    showPhoto: DataTypes.BOOLEAN
-  });
-
-  allPics.belongsTo(User)
-  return User, allPics;
-=======
   return User;
->>>>>>> 2b9012b0c18f424d6418963b839fec38a8cb2d3a
 };

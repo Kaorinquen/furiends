@@ -1,3 +1,15 @@
+var divNumber = [
+  "divOne",
+  "divTwo",
+  "divThree",
+  "divOne",
+  "divTwo",
+  "divThree",
+  "divOne",
+  "divTwo",
+  "divThree"
+];
+
 var API = {
   getAllPics: function(offset) {
     return $.ajax({
@@ -10,26 +22,22 @@ var API = {
       type: "GET",
       url: "/api/allOtherPicsUrl/" + offsetOther + "/" + userId
     });
+  },
+  updateUserInfo: function() {
+    return $.ajax({
+      type: "POST",
+      url: "/api/allOtherPicsUrl/" + offsetOther + "/" + userId
+    });
   }
 };
 
-//==============================================================//
+// Dashboard==============================================================//
+
 // Infinity scroll
 var offset = 0;
 $(window).scroll(function() {
   if ($(window).scrollTop() === $(document).height() - $(window).height()) {
     API.getAllPics(offset).then(function(data) {
-      var divNumber = [
-        "divOne",
-        "divTwo",
-        "divThree",
-        "divOne",
-        "divTwo",
-        "divThree",
-        "divOne",
-        "divTwo",
-        "divThree"
-      ];
       offset += 6;
       console.log(data);
       if (data === []) {
@@ -58,19 +66,7 @@ $("#uploadButton").on("click", function() {
   "#uploadModal".trigger("focus");
 });
 
-//user profile
 API.getAllPics(offset).then(function(data) {
-  var divNumber = [
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree"
-  ];
   offset += 6;
   for (var i = 0; i < 6; i++) {
     $("#container").append(
@@ -91,28 +87,9 @@ API.getAllPics(offset).then(function(data) {
 var offsetOther = 0;
 var userId = $("#id").val();
 
-function start() {
-  userId = $("#id").val();
-
-  setTimeout(function() {
-    getMyStuff();
-  }, 1000);
-}
-console.log(userId);
 $(window).scroll(function() {
   if ($(window).scrollTop() === $(document).height() - $(window).height()) {
     API.getOtherAllPics(offsetOther, userId).then(function(data) {
-      var divNumber = [
-        "divOne",
-        "divTwo",
-        "divThree",
-        "divOne",
-        "divTwo",
-        "divThree",
-        "divOne",
-        "divTwo",
-        "divThree"
-      ];
       offsetOther += 6;
       console.log(data);
       if (data === []) {
@@ -136,35 +113,19 @@ $(window).scroll(function() {
   }
 });
 
-//other user profile
-var getMyStuff = function() {
-  API.getOtherAllPics(offsetOther, userId).then(function(data) {
-    var divNumber = [
-      "divOne",
-      "divTwo",
-      "divThree",
-      "divOne",
-      "divTwo",
-      "divThree",
-      "divOne",
-      "divTwo",
-      "divThree"
-    ];
-    offsetOther += 6;
-    for (var i = 0; i < 6; i++) {
-      $("#containerOther").append(
-        "<div class='card mb-3' id='" +
-          divNumber[i] +
-          "'><img style='height: 200px; width: 100%; display: block;' src='" +
-          data[i].url +
-          "'><div class='card-body'><p class='card-text' id='comment'>" +
-          data[i].comment +
-          "</p></div><div class='card-footer text-muted' id='date'>" +
-          data[i].createdAt +
-          "</div></div>"
-      );
-    }
-  });
-};
-
-start();
+API.getOtherAllPics(offsetOther, userId).then(function(data) {
+  offsetOther += 6;
+  for (var i = 0; i < 6; i++) {
+    $("#containerOther").append(
+      "<div class='card mb-3' id='" +
+        divNumber[i] +
+        "'><img style='height: 200px; width: 100%; display: block;' src='" +
+        data[i].url +
+        "'><div class='card-body'><p class='card-text' id='comment'>" +
+        data[i].comment +
+        "</p></div><div class='card-footer text-muted' id='date'>" +
+        data[i].createdAt +
+        "</div></div>"
+    );
+  }
+});

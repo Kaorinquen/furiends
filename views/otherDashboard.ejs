@@ -1,70 +1,54 @@
 <header>
+  <nav class="navbar">
     <nav class="navbar">
-      <nav class="navbar">
-        <a class="navbar-brand" href="/explore">
-          <i class="fa fa-paw" aria-hidden="true"></i>
-          FURiends
-        </a>
-      </nav>
-      <ul class="nav justify-content-end">
-        <li class="nav-item">
-          <a href="/users/logout" class="btn btn-success" id="log">Logout</a>
-        </li>
-      </ul>
+      <a class="navbar-brand" href="/explore">
+        <i class="fa fa-paw" aria-hidden="true"></i>
+        FURiends
+      </a>
     </nav>
-  </header>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a href="/userprofile/<%= user.id %>" class="btn btn-succes" id="log">My Page</a>
+        <a href="/users/logout" class="btn btn-success" id="log">Logout</a>
+      </li>
+    </ul>
+  </nav>
   <div class="clear"></div>
-  <div class="container">
-    <div class="jumbotron" id=userInfo>
-      <div id="wrapper">
-        <h1 class="display-4"> </h1>
-        <input type="hidden" id="id" value=" <%= page %> "></input>
-        <img src="#" alt="#">
-        <div id=></div>
-        <div id="userBio">Bio</div><button type="button" data-toggle=button> </button>
-        <div class="profileTextStyle" id="userName"></div><button type="button" data-toggle=button id="userNameEdit">Edit
-        </button>
-        <div class="profileTextStyle" id="userSpecies"></div><button type="button" data-toggle=button id="spcEdit">Edit
-        </button>
-        <div class="profileTextStyle" id="userBreed"></div> <button type="button" data-toggle=button id="brdEdit">Edit
-        </button>
-        <div class="profileTextStyle" id="userLocation"></div> <button type="button" data-toggle=button id="locEdit">Edit
-        </button>
-        <div>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-            Upload new image
-          </button>
-        </div>
+</header>
+
+
+<div container>
+  <div class="jumbotron" id=userInfo>
+    <div>
+      <h1 class="display-4" id="othersName">Hello I am <%= profile.userName %>!</h1>
+      <input type="hidden" id="id" value=" <%= profile.id %> "></input>
+      <div id=></div>
+      <div id=wrapper>
+
+          <h5>About Me</h5>
+          <p id="userBio"><%= profile.bio %></p>
+          <h5>Species</h5>
+          <p id="userSpecies"><%= profile.species %></p>
+          <h5>Breed</h5>
+          <p id="userBreed"><%= profile.breed %></p>
+          <h5>I Live in</h5>
+          <p id="userLocation"><%= profile.location %></p>
+          <h5>Joined</h5>
+          <p id="userJoinDate"><%= profile.createdAt %></p>
+
       </div>
     </div>
-  
-    <div class="modal" tabindex="-1" role="dialog" id="uploadModal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Upload an Image</h5>
-  
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div id="containerOther">
-    </div>
-  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"></script>
-    <script src="js/index.js"></script>
+  </div>
+</div>
+
+<div class="container">
+  <div id="containerOther">
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/index.js"></script>

@@ -45,16 +45,12 @@
   }
   
   .modal-contents{
-    height: 350px;
-    width: 500px;
     background: white;
     text-align: center;
     padding: 20px;
     position: relative;
     left: 50%;
     top: 50%; 
-    margin-left: -150px;
-    margin-top: -150px;
     border-radius: 4px;
   }
   input{
@@ -95,16 +91,12 @@
       text-align: center;
     }
   .modal-content{
-    height: 220px;
-    width: 500px;
     background: white;
     text-align: center;
     padding: 20px;
     position: relative;
    left: 50%;
-   top: 50%; 
-   margin-left: -150px;
-   margin-top: -150px;
+   top: 50%;
     border-radius: 4px;
     }
 

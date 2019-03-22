@@ -23,8 +23,6 @@
   border:tomato solid 3px;
   background: darkturquoise;
   color: tomato;
-  
-  
   }
   
   #register{
@@ -45,14 +43,19 @@
   }
   
   .modal-contents{
+    height: 350px;
+    width: 500px;
     background: white;
     text-align: center;
     padding: 20px;
     position: relative;
     left: 50%;
     top: 50%; 
+    margin-left: -150px;
+    margin-top: -150px;
     border-radius: 4px;
   }
+ 
   input{
     margin: 15px auto;
     display: block;
@@ -80,23 +83,23 @@
     display: none;
     justify-content: center;
     align-items: center;
-    }
-    #loglogo{
-      height: 25.81px;
-      width: 24px;
-      align-content: center;
-      text-align: center;
-    }
+  }
+
+  #loglogo{
+    height: 25.81px;
+    width: 24px;
+    align-content: center;
+    text-align: center;
+  }
   .modal-content{
     background: white;
     text-align: center;
     padding: 20px;
     position: relative;
-   left: 50%;
-   top: 50%;
+    left: 50%;
+    top: 50%; 
     border-radius: 4px;
     }
-
 
 #divOne{
   width:30%;
@@ -112,17 +115,17 @@
   margin-right: 2%;
   justify-content: center !important;
 }
+
 #divThree{
   width:30%;
   float: left;
   justify-content: center !important;
-  
 }
 
-
-  img{
-    display: block;
-    margin: 0 auto;
+img{
+  display: block;
+  margin: 0 auto;
+  text-align: center;
 }
 
 img:hover{
@@ -131,33 +134,17 @@ img:hover{
   z-index: 1;
 }
 
-#userInfo {
-  background-size: cover;
-  margin-top: 20px;
+.jumbotron {   
+  background-size:cover;
+  margin-top: 20px 10px 10px 30px
 }
   
-#wrapper .text {
-  position:relative;
-  bottom:30px;
-  left:0px;
-  visibility:hidden;
-}
-  
-#wrapper:hover .text {
-  visibility:visible;
-}
-  
-.profileTextStyle{
-  font-size: 12pt;
-  color: white;
-  column-count: 2;
-  text-align: left;
-}
-  
-#userName{
-  font-size: 20pt;
-  color: grey;
-  text-align: center;
+.jumbotron:hover .text {
+position:relative;
+bottom:30px;
+left:0px;
+visibility:hidden;
+color: white;
 }
 
 .clear {

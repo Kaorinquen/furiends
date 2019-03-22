@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "root",
-=======
-    "password": "happy1234",
->>>>>>> 5f9f100b3e30a72dad174b2d744de8db16210ed6
     "database": "furiends",
     "host": "localhost",
     "dialect": "mysql",

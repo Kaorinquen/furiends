@@ -5,12 +5,21 @@ var API = {
       type: "GET",
       url: "/api/front/" + offsetFront
     });
+  },
+  getExplorer: function(offsetFront) {
+    return $.ajax({
+      type: "GET",
+      url: "/api/explorer/" + offsetFront
+    });
   }
 };
 
 //==============================================================//
 // Infinity scroll
 var offsetFront = 0;
+var offsetExplorer = 0;
+
+//front page scroll pictures
 $(window).scroll(function() {
   if ($(window).scrollTop() === $(document).height() - $(window).height()) {
     API.getFront(offsetFront).then(function(data) {
@@ -25,13 +34,13 @@ $(window).scroll(function() {
         "divTwo",
         "divThree"
       ];
-      offset += 12;
+      offsetFront += 12;
       console.log(data);
       if (data === []) {
         console.log("All Done!");
       } else {
         for (var i = 0; i < 12; i++) {
-          $("#container").append(
+          $("#containerFront").append(
             "<div class='card mb-3' id='" +
               divNumber[i] +
               "'><img style='height: 200px; width: 100%; display: block;' src='" +
@@ -43,44 +52,6 @@ $(window).scroll(function() {
     });
   }
 });
-
-//Click event for register modal
-$(document).ready(function() {
-  $("#register").on("click", function() {
-    $(".bg-modal").css("display", "block");
-  });
-  $(".close").click(function() {
-    $(".bg-modal").css("display", "none");
-  });
-});
-//Click event for login modal
-$(document).ready(function() {
-  $("#login").on("click", function() {
-    $(".modal").css("display", "block");
-  });
-  $(".close").click(function() {
-    $(".modal").css("display", "none");
-  });
-});
-
-$("#uploadButton").on("click", function() {
-  event.preventDefault();
-  "#uploadModal".trigger("focus");
-});
-
-// $(".jumbotron").on(hover, function () {
-//   $("#updateButton").show();
-//   member.username.show();
-//   member.bio.show();
-//   member.species.show();
-//   member.breed.show();
-// },
-// function () {
-//   member.username.hide();
-//   member.bio.hide();
-//   member.species.hide();
-//   member.breed.hide();
-// });
 
 //front page
 API.getFront(offsetFront).then(function(data) {
@@ -117,27 +88,77 @@ API.getFront(offsetFront).then(function(data) {
   }
 });
 
-// //Click event for register modal
-// $(document).ready(function() {
-  
+//explorer scroll
+$(window).scroll(function() {
+  if ($(window).scrollTop() === $(document).height() - $(window).height()) {
+    API.getExplorer(offsetExplorer).then(function(data) {
+      var divNumber = [
+        "divOne",
+        "divTwo",
+        "divThree",
+        "divOne",
+        "divTwo",
+        "divThree",
+        "divOne",
+        "divTwo",
+        "divThree"
+      ];
+      offsetExplorer += 12;
+      console.log(data);
+      if (data === []) {
+        console.log("All Done!");
+      } else {
+        for (var i = 0; i < 12; i++) {
+          $("#containerExplorer").append(
+            "<div class='card mb-3' id='" +
+              divNumber[i] +
+              "'><img style='height: 200px; width: 100%; display: block;' src='" +
+              data[i].url +
+              "'><div class='card-body'><p class='card-text' id='comment'>" +
+              data[i].comment + "</p><a href='userprofile/" + data[i].userId +"' >" + data[i].userName + "</a></div><div class='card-footer text-muted' id='date'>" +
+              data[i].createdAt +
+              "</div></div>"
+          );
+        }
+      }
+    });
+  }
+});
 
-//   $("#uploadButton").on("click", function(){
-//                 ("#uploadModal").trigger('focus')
-//         });
-
-//         $('#uploadButton').on('shown.bs.modal', function () {
-//           $('#uploadmodal').trigger('focus')
-//   })
-//   $(".jumbotron").on(hover, function () {
-//           $("#updateButton").show();
-//           member.username.show();
-//           member.bio.show();
-//           member.species.show();
-//           member.breed.show();
-//   }, function () {
-//           member.username.hide();
-//           member.bio.hide();
-//           member.species.hide();
-//           member.breed.hide();
-//   });
-// });
+//explorer page
+API.getExplorer(offsetExplorer).then(function(data) {
+  console.log(data);
+  var divNumber = [
+    "divOne",
+    "divTwo",
+    "divThree",
+    "divOne",
+    "divTwo",
+    "divThree",
+    "divOne",
+    "divTwo",
+    "divThree",
+    "divOne",
+    "divTwo",
+    "divThree",
+    "divOne",
+    "divTwo",
+    "divThree",
+    "divOne",
+    "divTwo",
+    "divThree"
+  ];
+  offsetExplorer += 12;
+  for (var i = 0; i < 12; i++) {
+    $("#containerExplorer").append(
+      "<div class='card mb-3' id='" +
+        divNumber[i] +
+        "'><img style='height: 200px; width: 100%; display: block;' src='" +
+        data[i].url +
+        "'><div class='card-body'><p class='card-text' id='comment'>" +
+        data[i].comment + "</p><a href='userprofile/" + data[i].userId +"' >" + data[i].userName + "</a></div><div class='card-footer text-muted' id='date'>" +
+        data[i].createdAt +
+        "</div></div>"
+    );
+  }
+});

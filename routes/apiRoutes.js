@@ -35,7 +35,7 @@ router.post("/api/upload", multerUpload, (req, res) => {
   }
 });
 
-// Get all pictures from the "allPics" table in the "Furiends" database
+// Get all pictures from the "allPics" table for front page
 router.get("/api/front/:offset", function(req, res) {
   var number = parseInt(req.params.offset);
   db.allPics.findAll({ attributes: ['url'], offset: number, limit: 12 }
@@ -44,10 +44,29 @@ router.get("/api/front/:offset", function(req, res) {
   });
 });
 
-// Get all pictures from the "allPics" table in the "Furiends" database
+// Get all pictures from the "allPics" table for explorer page
+router.get("/api/explorer/:offset", ensureAuthenticated, function(req, res) {
+  var number = parseInt(req.params.offset);
+  db.allPics.findAll({ attributes: ['url', 'comment', 'createdAt', "userName", "userId" ], offset: number, limit: 12 }
+  ).then(function(dbAllPics) {
+    res.json(dbAllPics);
+  });
+});
+
+// Get all pictures from the "allPics" table for current user page
 router.get("/api/allPicsUrl/:offset", ensureAuthenticated, function(req, res) {
   var number = parseInt(req.params.offset);
   db.allPics.findAll({ where: { userId: req.user.id }, attributes: ['url', 'comment', 'createdAt' ], offset: number, limit: 6 }
+  ).then(function(dbAllPics) {
+    res.json(dbAllPics);
+  });
+});
+
+// Get all pictures from the "allPics" table for the other user page
+router.get("/api/allOtherPicsUrl/:offset/:userId", ensureAuthenticated, function(req, res) {
+  var number = parseInt(req.params.offset);
+  var userId = req.params.userId
+  db.allPics.findAll({ where: { userId: userId }, attributes: ['url', 'comment', 'createdAt' ], offset: number, limit: 6 }
   ).then(function(dbAllPics) {
     res.json(dbAllPics);
   });

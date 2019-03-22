@@ -15,6 +15,14 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>{
 }
 );
 
+//Explore page
+router.get('/explore', ensureAuthenticated, (req, res) =>{ 
+  res.render('explore', {
+    user: req.user
+  })
+}
+);
+
 // Create User Route to separate pages and Ensure Authentication to view separate pages
 // Place condition that tests if the user is logged in
 // FEEL FREE TO CHANGE THIS
@@ -32,10 +40,14 @@ router.get('/userprofile/:userId', ensureAuthenticated, (req, res) => {
           // Condition that tests whether it is the User accessing their own page or that of another user
           if (userAccess == userReq){
           // Accessing the own profile page
-          res.send("Accessing my own page and my ID is: " + userAccess);
+          res.render('dashboard', {
+            user: req.user
+          })
           } else {
           // Accessing someone else's page
-          res.send("Accessing another user's page whose ID is: " + userReq);
+          res.render("otherDashboard", {
+            page: userReq
+          })
           }
         }).catch(err => console.log(err));
 });

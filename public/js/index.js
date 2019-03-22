@@ -1,99 +1,116 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
-// The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  getAllPics: function(offset) {
     return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
+      type: "GET",
+      url: "/api/allPicsUrl/" + offset
     });
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
+//==============================================================//
+// Infinity scroll
+var offset = 0;
+$(window).scroll(function() {
+  if ($(window).scrollTop() === $(document).height() - $(window).height()) {
+    API.getAllPics(offset).then(function(data) {
+      var divNumber = [
+        "divOne",
+        "divTwo",
+        "divThree",
+        "divOne",
+        "divTwo",
+        "divThree",
+        "divOne",
+        "divTwo",
+        "divThree"
+      ];
+      offset += 6;
+      console.log(data);
+      if (data === []) {
+        console.log("All Done!");
+      } else {
+        for (var i = 0; i < 6; i++) {
+          $("#container").append(
+            "<div class='card mb-3' id='" +
+              divNumber[i] +
+              "'><img style='height: 200px; width: 100%; display: block;' src='" +
+              data[i].url +
+              "'><div class='card-body'><p class='card-text' id='comment'>" +
+              data[i].comment +
+              "</p></div><div class='card-footer text-muted' id='date'>" +
+              data[i].createdAt +
+              "</div></div>"
+          );
+        }
+      }
     });
+  }
+});
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+//Click event for register modal
+$(document).ready(function() {
+  $("#register").on("click", function() {
+    $(".bg-modal").css("display", "block");
   });
-};
+  $(".close").click(function() {
+    $(".bg-modal").css("display", "none");
+  });
+});
+//Click event for login modal
+$(document).ready(function() {
+  $("#login").on("click", function() {
+    $(".modal").css("display", "block");
+  });
+  $(".close").click(function() {
+    $(".modal").css("display", "none");
+  });
+});
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
+$("#uploadButton").on("click", function() {
   event.preventDefault();
+  "#uploadModal".trigger("focus");
+});
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
+// $(".jumbotron").on(hover, function () {
+//   $("#updateButton").show();
+//   member.username.show();
+//   member.bio.show();
+//   member.species.show();
+//   member.breed.show();
+// },
+// function () {
+//   member.username.hide();
+//   member.bio.hide();
+//   member.species.hide();
+//   member.breed.hide();
+// });
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
+
+//user profile
+API.getAllPics(offset).then(function(data) {
+  var divNumber = [
+    "divOne",
+    "divTwo",
+    "divThree",
+    "divOne",
+    "divTwo",
+    "divThree",
+    "divOne",
+    "divTwo",
+    "divThree"
+  ];
+  offset += 6;
+  for (var i = 0; i < 6; i++) {
+    $("#container").append(
+      "<div class='card mb-3' id='" +
+        divNumber[i] +
+        "'><img style='height: 200px; width: 100%; display: block;' src='" +
+        data[i].url +
+        "'><div class='card-body'><p class='card-text' id='comment'>" +
+        data[i].comment +
+        "</p></div><div class='card-footer text-muted' id='date'>" +
+        data[i].createdAt +
+        "</div></div>"
+    );
   }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+});

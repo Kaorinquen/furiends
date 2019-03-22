@@ -1,3 +1,24 @@
+var divNumber = [
+  "divOne",
+  "divTwo",
+  "divThree",
+  "divOne",
+  "divTwo",
+  "divThree",
+  "divOne",
+  "divTwo",
+  "divThree",
+  "divOne",
+  "divTwo",
+  "divThree",
+  "divOne",
+  "divTwo",
+  "divThree",
+  "divOne",
+  "divTwo",
+  "divThree"
+];
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   getFront: function(offsetFront) {
@@ -23,17 +44,6 @@ var offsetExplorer = 0;
 $(window).scroll(function() {
   if ($(window).scrollTop() === $(document).height() - $(window).height()) {
     API.getFront(offsetFront).then(function(data) {
-      var divNumber = [
-        "divOne",
-        "divTwo",
-        "divThree",
-        "divOne",
-        "divTwo",
-        "divThree",
-        "divOne",
-        "divTwo",
-        "divThree"
-      ];
       offsetFront += 12;
       console.log(data);
       if (data === []) {
@@ -55,27 +65,6 @@ $(window).scroll(function() {
 
 //front page
 API.getFront(offsetFront).then(function(data) {
-  console.log(data);
-  var divNumber = [
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree"
-  ];
   offsetFront += 12;
   for (var i = 0; i < 12; i++) {
     $("#containerFront").append(
@@ -92,19 +81,7 @@ API.getFront(offsetFront).then(function(data) {
 $(window).scroll(function() {
   if ($(window).scrollTop() === $(document).height() - $(window).height()) {
     API.getExplorer(offsetExplorer).then(function(data) {
-      var divNumber = [
-        "divOne",
-        "divTwo",
-        "divThree",
-        "divOne",
-        "divTwo",
-        "divThree",
-        "divOne",
-        "divTwo",
-        "divThree"
-      ];
       offsetExplorer += 12;
-      console.log(data);
       if (data === []) {
         console.log("All Done!");
       } else {
@@ -127,27 +104,6 @@ $(window).scroll(function() {
 
 //explorer page
 API.getExplorer(offsetExplorer).then(function(data) {
-  console.log(data);
-  var divNumber = [
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree",
-    "divOne",
-    "divTwo",
-    "divThree"
-  ];
   offsetExplorer += 12;
   for (var i = 0; i < 12; i++) {
     $("#containerExplorer").append(

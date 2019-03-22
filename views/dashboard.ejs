@@ -23,9 +23,17 @@
       <h1 class="display-4" id="othersName"> Hello <%= user.userName %>!</h1>
       <div id=></div>
       <div id=wrapper>
-        <p id="userSpecies">Sphinx</p>
-        <p id="userBreed">cat</p>
-        <p id="userLocation">Orlando</p>
+
+        <h5>About Me</h5>
+        <p id="userBio"><%= user.bio %></p>
+        <h5>Species</h5>
+        <p id="userSpecies"><%= user.species %></p>
+        <h5>Breed</h5>
+        <p id="userBreed"><%= user.breed %></p>
+        <h5>I Live in</h5>
+        <p id="userLocation"><%= user.location %></p>
+        <h5>Joined</h5>
+        <p id="userJoinDate"><%= user.createdAt %></p>
 
         <button type="button" id="updateButton" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
           Upload new image

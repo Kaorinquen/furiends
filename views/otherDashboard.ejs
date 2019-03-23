@@ -17,29 +17,31 @@
 </header>
 
 
-<div container>
-  <div class="jumbotron" id=userInfo>
-    <div>
-      <h1 class="display-4" id="othersName">Hello I am <%= profile.userName %>!</h1>
-      <input type="hidden" id="id" value=" <%= profile.id %> "></input>
-      <div id=></div>
-      <div id=wrapper>
 
+<div id="profileInfo">
+    <h1 class="display-4 text-center" id="othersName"> Hello <%= user.userName %>!</h1>
+    <input type="hidden" id="id" value=" <%= profile.id %> "></input>
+    <div class="row">
+      <div class="col-6">
+        <div id=wrapper>
           <h5>About Me</h5>
-          <p id="userBio"><%= profile.bio %></p>
+          <p id="userBio"><%= user.bio %></p>
           <h5>Species</h5>
-          <p id="userSpecies"><%= profile.species %></p>
+          <p id="userSpecies"><%= user.species %></p>
           <h5>Breed</h5>
-          <p id="userBreed"><%= profile.breed %></p>
+          <p id="userBreed"><%= user.breed %></p>
           <h5>I Live in</h5>
-          <p id="userLocation"><%= profile.location %></p>
+          <p id="userLocation"><%= user.location %></p>
           <h5>Joined</h5>
-          <p id="userJoinDate"><%= profile.createdAt %></p>
-
+          <p id="userJoinDate"><%= user.createdAt %></p>
+        </div>
+      </div>
+      <div class="col-6 text-center">
+        <img src="<%= user.profilePic %>" alt="..." class="img-thumbnail" id="profilePic">
       </div>
     </div>
   </div>
-</div>
+  
 
 <div class="container">
   <div id="containerOther">
@@ -51,4 +53,4 @@
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="js/index.js"></script>
+<script src="js/dashboardOther.js"></script>

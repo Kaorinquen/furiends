@@ -46,7 +46,7 @@ $(window).scroll(function() {
         $("#container").append(
           "<div class='card mb-3' id='divOne'><img id='pictures' style='height: 200px; width: 100%; display: block;' src='" +
             pictureUrls[i].url +
-            "'><div class='card-body'><p class='card-text' id='comment'>" +
+            "'><div class='card-body' id='cdOne'><p class='card-text' id='comment'>" +
             pictureUrls[i].comment +
             "</p></div><div class='card-footer text-muted' id='date'>" +
             pictureUrls[i].createdAt +
@@ -74,7 +74,7 @@ var start = function() {
       $("#container").append(
         "<div class='card mb-3' id='divOne'><img id='pictures' style='height: 200px; width: 100%; display: block;' src='" +
           pictureUrls[i].url +
-          "'><div class='card-body'><p class='card-text' id='comment'>" +
+          "'><div class='card-body' id='cdOne'><p class='card-text' id='comment'>" +
           pictureUrls[i].comment +
           "</p></div><div class='card-footer text-muted' id='date'>" +
           pictureUrls[i].createdAt +

@@ -263,7 +263,7 @@ color:#42a5f5 ;
 
 /* CSS for cards */
 
-.card-body{
+#cdOne{
   font-size: 20px;
   height: 100px;
   overflow: scroll;

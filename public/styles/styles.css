@@ -265,6 +265,8 @@ color:#42a5f5 ;
 
 .card-body{
   font-size: 20px;
+  height: 100px;
+  overflow: scroll;
 }
 
 .clear {

@@ -25,7 +25,7 @@ API.getExplorer().then(function(data) {
 //explorer scroll
 $(window).scroll(function() {
   if ($(window).scrollTop() === $(document).height() - $(window).height()) {
-    counterStop = counter + 6;
+    counterStop = counter + 12;
     for (var i = counter; i < counterStop; i++) {
       if (counter >= pictureUrls.length) {
         console.log("No more pictures!");
@@ -53,7 +53,7 @@ $(window).scroll(function() {
 
 //explorer page
 var start = function() {
-  counterStop = counter + 6;
+  counterStop = counter + 12;
   for (var i = counter; i < counterStop; i++) {
     if (counter >= pictureUrls.length) {
       console.log("No more pictures!");

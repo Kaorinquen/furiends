@@ -9,7 +9,7 @@ var API = {
   getAllPics: function() {
     return $.ajax({
       type: "GET",
-      url: "/api/allPicsUrl/"
+      url: "/api/allPicsUrl"
     });
   }
 };
@@ -38,7 +38,9 @@ $(window).scroll(function() {
             pictureUrls[i].comment +
             "</p></div><div class='card-footer text-muted' id='date'>" +
             pictureUrls[i].createdAt +
-            "</div></div>"
+            "<form action='/api/photoBye' method='post'><input type='hidden' name='pictureUrl' value='" +
+            pictureUrls[i].url +
+            "'></input><button type='submit' value='Submit'>Delete Photo</button></form></div></div>"
         );
       }
     }
@@ -66,7 +68,9 @@ var start = function() {
           pictureUrls[i].comment +
           "</p></div><div class='card-footer text-muted' id='date'>" +
           pictureUrls[i].createdAt +
-          "</div></div>"
+          "<form action='/api/photoBye' method='post'><input type='hidden' name='pictureUrl' value='" +
+          pictureUrls[i].url +
+          "'></input><button type='submit' value='Submit'>Delete Photo</button></form></div></div>"
       );
     }
   }

@@ -72,9 +72,24 @@ router.post("/api/userUpload", (req, res) => {
     });
 });
 
+router.post("/api/photoBye", (req, res) => {
+  let { pictureUrl } = req.body;
+  console.log(pictureUrl)
+  db.allPics
+    .update({
+      showPhoto: false
+    },
+      {
+        where: { url: pictureUrl }
+      })
+    .then(function (result) {
+      return res.redirect('/dashboard');
+    });
+});
+
 // Get all pictures from the "allPics" table for front page
 router.get("/api/front", function (req, res) {
-  db.allPics.findAll({ attributes: ['url']}
+  db.allPics.findAll({ where: { showPhoto: true }, attributes: ['url']}
   ).then(function (dbAllPics) {
     res.json(dbAllPics);
   });
@@ -82,7 +97,7 @@ router.get("/api/front", function (req, res) {
 
 // Get all pictures from the "allPics" table for explorer page
 router.get("/api/explorer", ensureAuthenticated, function (req, res) {
-  db.allPics.findAll({ attributes: ['url', 'comment', 'createdAt', "userName", "userId"] }
+  db.allPics.findAll({ where: { showPhoto: true }, attributes: ['url', 'comment', 'createdAt', "userName", "userId"] }
   ).then(function (dbAllPics) {
     res.json(dbAllPics);
   });
@@ -90,7 +105,7 @@ router.get("/api/explorer", ensureAuthenticated, function (req, res) {
 
 // Get all pictures from the "allPics" table for current user page
 router.get("/api/allPicsUrl", ensureAuthenticated, function (req, res) {
-  db.allPics.findAll({ where: { userId: req.user.id }, attributes: ['url', 'comment', 'createdAt']}
+  db.allPics.findAll({ where: { userId: req.user.id, showPhoto: true }, attributes: ['url', 'comment', 'createdAt']}
   ).then(function (dbAllPics) {
     res.json(dbAllPics);
   });
@@ -99,7 +114,7 @@ router.get("/api/allPicsUrl", ensureAuthenticated, function (req, res) {
 // Get all pictures from the "allPics" table for the other user page
 router.get("/api/allOtherPicsUrl/:userId", ensureAuthenticated, function (req, res) {
   var userId = req.params.userId
-  db.allPics.findAll({ where: { userId: userId }, attributes: ['url', 'comment', 'createdAt']}
+  db.allPics.findAll({ where: { userId: userId, showPhoto: true }, attributes: ['url', 'comment', 'createdAt']}
   ).then(function (dbAllPics) {
     res.json(dbAllPics);
   });

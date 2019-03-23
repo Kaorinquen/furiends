@@ -42,19 +42,14 @@
   align-items: center;
   }
   
-  .modal-contents{
-    height: 350px;
-    width: 500px;
+  .modal-content{
     background: white;
     text-align: center;
     padding: 20px;
     position: relative;
-    left: 50%;
-    top: 50%; 
-    margin-left: -150px;
-    margin-top: -150px;
     border-radius: 4px;
-  }
+    }
+
  
   input{
     margin: 15px auto;
@@ -96,8 +91,6 @@
     text-align: center;
     padding: 20px;
     position: relative;
-    left: 50%;
-    top: 50%; 
     border-radius: 4px;
     }
 

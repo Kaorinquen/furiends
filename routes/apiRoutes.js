@@ -35,6 +35,26 @@ router.post("/api/upload", multerUpload, (req, res) => {
   }
 });
 
+// POST route for saving a new profile picture
+router.post("/api/ProfilePic", multerUpload, (req, res) => {
+  if (req.file) {
+    var file = dataUri(req).content;
+    let { id } = req.body;
+    cloudinary.uploader.upload(file, (result) => {
+      db.User
+        .update({
+          profilePic: result.secure_url
+        },
+        { 
+          where: {id: id}
+        })
+        .then(function (result) {
+          return res.redirect('/dashboard');
+        });
+    });
+  }
+});
+
 router.post("/api/userUpload", (req, res) => {
   let { bio, species, breed, location, id } = req.body;
   db.User
@@ -52,39 +72,50 @@ router.post("/api/userUpload", (req, res) => {
     });
 });
 
+router.post("/api/photoBye", (req, res) => {
+  let { pictureUrl } = req.body;
+  console.log(pictureUrl)
+  db.allPics
+    .update({
+      showPhoto: false
+    },
+      {
+        where: { url: pictureUrl }
+      })
+    .then(function (result) {
+      return res.redirect('/dashboard');
+    });
+});
+
 // Get all pictures from the "allPics" table for front page
-router.get("/api/front/:offset", function(req, res) {
-  var number = parseInt(req.params.offset);
-  db.allPics.findAll({ attributes: ['url'], offset: number, limit: 12 }
-  ).then(function(dbAllPics) {
+router.get("/api/front", function (req, res) {
+  db.allPics.findAll({ where: { showPhoto: true }, attributes: ['url']}
+  ).then(function (dbAllPics) {
     res.json(dbAllPics);
   });
 });
 
 // Get all pictures from the "allPics" table for explorer page
-router.get("/api/explorer/:offset", ensureAuthenticated, function(req, res) {
-  var number = parseInt(req.params.offset);
-  db.allPics.findAll({ attributes: ['url', 'comment', 'createdAt', "userName", "userId" ], offset: number, limit: 12 }
-  ).then(function(dbAllPics) {
+router.get("/api/explorer", ensureAuthenticated, function (req, res) {
+  db.allPics.findAll({ where: { showPhoto: true }, attributes: ['url', 'comment', 'createdAt', "userName", "userId"] }
+  ).then(function (dbAllPics) {
     res.json(dbAllPics);
   });
 });
 
 // Get all pictures from the "allPics" table for current user page
-router.get("/api/allPicsUrl/:offset", ensureAuthenticated, function(req, res) {
-  var number = parseInt(req.params.offset);
-  db.allPics.findAll({ where: { userId: req.user.id }, attributes: ['url', 'comment', 'createdAt' ], offset: number, limit: 6 }
-  ).then(function(dbAllPics) {
+router.get("/api/allPicsUrl", ensureAuthenticated, function (req, res) {
+  db.allPics.findAll({ where: { userId: req.user.id, showPhoto: true }, attributes: ['url', 'comment', 'createdAt']}
+  ).then(function (dbAllPics) {
     res.json(dbAllPics);
   });
 });
 
 // Get all pictures from the "allPics" table for the other user page
-router.get("/api/allOtherPicsUrl/:offset/:userId", ensureAuthenticated, function(req, res) {
-  var number = parseInt(req.params.offset);
+router.get("/api/allOtherPicsUrl/:userId", ensureAuthenticated, function (req, res) {
   var userId = req.params.userId
-  db.allPics.findAll({ where: { userId: userId }, attributes: ['url', 'comment', 'createdAt' ], offset: number, limit: 6 }
-  ).then(function(dbAllPics) {
+  db.allPics.findAll({ where: { userId: userId, showPhoto: true }, attributes: ['url', 'comment', 'createdAt']}
+  ).then(function (dbAllPics) {
     res.json(dbAllPics);
   });
 });
@@ -93,88 +124,88 @@ router.get("/api/allOtherPicsUrl/:offset/:userId", ensureAuthenticated, function
 // that is where the passport logic lives and users can only
 // create a new user via passport/login screen
 
-  // =================================================================
-  // GET ROUTES
-  // Grabs all users from the "Users" table in the "Furiends" database
-  router.get("/api/User", function(req, res) {
-    db.User.findAll({}).then(function(dbUsers){
-      res.json(dbUsers);
-    });
+// =================================================================
+// GET ROUTES
+// Grabs all users from the "Users" table in the "Furiends" database
+router.get("/api/User", function (req, res) {
+  db.User.findAll({}).then(function (dbUsers) {
+    res.json(dbUsers);
   });
-  // Gets all the pictures in the "allPics" table in the "furiends" database
-  router.get("/api/allPics", function(req, res) {
-    var query = {};
-    if (req.query.userId) {
-      query.userId = req.query.userId;
-    }
-    db.allPics.findAll({
-      where: query,
-      include: [db.User]
-    }).then(function(dballPics) {
-      res.json(dballPics);
-    });
+});
+// Gets all the pictures in the "allPics" table in the "furiends" database
+router.get("/api/allPics", function (req, res) {
+  var query = {};
+  if (req.query.userId) {
+    query.userId = req.query.userId;
+  }
+  db.allPics.findAll({
+    where: query,
+    include: [db.User]
+  }).then(function (dballPics) {
+    res.json(dballPics);
   });
+});
 
-  // Gets a specific user
-  router.get("/api/User/:id", function(req, res) {
-    db.User.findOne({
-      where: {
-        id: req.params.userId
-      },
-      include: [db.allPics]
-    }).then(function(data) {
-      res.json(data);
-    });
+// Gets a specific user
+router.get("/api/User/:id", function (req, res) {
+  db.User.findOne({
+    where: {
+      id: req.params.userId
+    },
+    include: [db.allPics]
+  }).then(function (data) {
+    res.json(data);
   });
-  // Gets a specific picture
-  router.get("/api/allPics/:id", function(req, res) {
-    db.allPics.findOne({
-      where: {
-        url: req.params.url
-      },
-      include: [db.User]
-    }).then(function(data) {
-      res.json(data);
-    });
+});
+// Gets a specific picture
+router.get("/api/allPics/:id", function (req, res) {
+  db.allPics.findOne({
+    where: {
+      url: req.params.url
+    },
+    include: [db.User]
+  }).then(function (data) {
+    res.json(data);
   });
+});
 
-  // ===============================================================
-  // PUT route
-  // Updates a specific picture
-router.put("/api/allPics", function(req, res) {
+// ===============================================================
+// PUT route
+// Updates a specific picture
+router.put("/api/allPics", function (req, res) {
   db.allPics.update(
     req.body,
     {
       where: {
         id: req.body.id
       }
-    }).then(function(dballPics) {
+    }).then(function (dballPics) {
       res.json(dballPics);
+    });
+});
+
+// ==============================================================
+// DELETE routes
+//Destroys a user in the "users" table in the "furiends" database
+router.delete("/api/users/:id", function (req, res) {
+  db.User.destroy({
+    where: {
+      id: req.params.userId
+    }
+  }).then(function (dbUser) {
+    res.json(dbUser);
   });
 });
 
-  // ==============================================================
-  // DELETE routes
-  //Destroys a user in the "users" table in the "furiends" database
-  router.delete("/api/users/:id", function(req, res) {
-    db.User.destroy({
-      where: {
-        id: req.params.userId
-      }
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
+// Destroys a picture in the "allPics" table in the "Furiends" database
+router.delete("/api/allPics/:id", function (req, res) {
+  db.allPics.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function (dbAllPics) {
+    res.json(dbAllPics);
   });
+});
 
-  // Destroys a picture in the "allPics" table in the "Furiends" database
-  router.delete("/api/allPics/:id", function(req, res) {
-    db.allPics.destroy({
-      where: { 
-        id: req.params.id
-      } 
-    }).then(function(dbAllPics) {
-      res.json(dbAllPics);
-    });
-  });
-
-  module.exports = router;
+module.exports = router;

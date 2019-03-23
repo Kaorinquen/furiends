@@ -17,13 +17,11 @@
 </header>
 
 
-<div container>
-  <div class="jumbotron" id="userInfo" style=" background-image: url(<%= user.profilePic %>);">
-    <div>
-      <h1 class="display-4" id="othersName"> Hello <%= user.userName %>!</h1>
-      <div id=></div>
+<div id="profileInfo">
+  <h1 class="display-4 text-center" id="othersName"> Hello <%= user.userName %>!</h1>
+  <div class="row">
+    <div class="col-6">
       <div id=wrapper>
-
         <h5>About Me</h5>
         <p id="userBio"><%= user.bio %></p>
         <h5>Species</h5>
@@ -35,72 +33,105 @@
         <h5>Joined</h5>
         <p id="userJoinDate"><%= user.createdAt %></p>
 
-        <div class="col-sm-6">
-          <button type="button" id="updateButton" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-            Upload new image
-          </button>
-          <button type="button" id="aboutButton" class="btn btn-primary" data-toggle="modal" data-target="#aboutModal">
-            Change profile info
-          </button>
-        </div>          
+
+        <button type="button" id="updateButton" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+          Upload new image
+        </button>
+        <button type="button" id="aboutButton" class="btn btn-primary" data-toggle="modal" data-target="#aboutModal">
+          Change profile info
+        </button>
+
+      </div>
+
+    </div>
+    <div class="col-6 text-center">
+      <img src="<%= user.profilePic %>" alt="..." class="img-thumbnail" id="profilePic">
+      <button type="button" id="aboutButton" class="btn btn-primary " data-toggle="modal"
+        data-target="#uploadProfilePicModal">
+        Change Profile Picture
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="uploadProfilePicModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload an Image</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/api/ProfilePic" method="post" enctype="multipart/form-data">
+          Your image: <input type="file" name="image"><br>
+          <input type="hidden" name="userName" value="<%= user.userName %>"></input>
+          <input type="hidden" name="id" value="<%= user.id %>"></input>
+          <button type="submit" value="Submit">Upload</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="uploadModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Upload an Image</h5>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload an Image</h5>
 
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/api/upload" method="post" enctype="multipart/form-data">
-            comment: <input id="comment" type="textarea" name="comment"><br>
-            Your image: <input type="file" name="image"><br>
-            <input type="hidden" name="userName" value="<%= user.userName %>"></input>
-            <input type="hidden" name="id" value="<%= user.id %>"></input>
-            <button type="submit" value="Submit">Upload</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/api/upload" method="post" enctype="multipart/form-data">
+          comment: <input id="comment" type="textarea" name="comment"><br>
+          Your image: <input type="file" name="image"><br>
+          <input type="hidden" name="userName" value="<%= user.userName %>"></input>
+          <input type="hidden" name="id" value="<%= user.id %>"></input>
+          <button type="submit" value="Submit">Upload</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal" tabindex="-1" role="dialog" id="aboutModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Update User Information</h5>
+<div class="modal" tabindex="-1" role="dialog" id="aboutModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update User Information</h5>
 
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/api/userUpload" method="post">
-            Bio: <br><input type="textarea" name="bio" value="<%= user.bio %>"></input><br><br>
-            Species: <input type="textarea" name="species" value="<%= user.species %>"></input><br>
-            Breed: <input type="textarea" name="breed" value="<%= user.breed %>"></input><br>
-            Location: <input type="textarea" name="location" value="<%= user.location %>"></input><br> 
-            <input type="hidden" name="userName" value="<%= user.userName %>"></input>
-            <input type="hidden" name="id" value="<%= user.id %>"></input>
-            <button type="submit" value="Submit">Update</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/api/userUpload" method="post">
+          Bio: <br><input type="textarea" name="bio" value="<%= user.bio %>"></input><br><br>
+          Species: <input type="textarea" name="species" value="<%= user.species %>"></input><br>
+          Breed: <input type="textarea" name="breed" value="<%= user.breed %>"></input><br>
+          Location: <input type="textarea" name="location" value="<%= user.location %>"></input><br>
+          <input type="hidden" name="userName" value="<%= user.userName %>"></input>
+          <input type="hidden" name="id" value="<%= user.id %>"></input>
+          <button type="submit" value="Submit">Update</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
 
 <div class="container">
   <div id="container">
@@ -112,4 +143,4 @@
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="js/index.js"></script>
+<script src="js/dashboard.js"></script>

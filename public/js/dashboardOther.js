@@ -48,9 +48,7 @@ $(window).scroll(function() {
       } else {
         counter += 1;
         $("#containerOther").append(
-          "<div class='card mb-3' id='" +
-            divNumber[i] +
-            "'><img id='pictures' style='height: 200px; width: 100%; display: block;' src='" +
+          "<div class='card mb-3' id='divOne'><img id='pictures' style='height: 200px; width: 100%; display: block;' src='" +
             pictureUrls[i].url +
             "'><div class='card-body'><p class='card-text' id='comment'>" +
             pictureUrls[i].comment +
@@ -71,9 +69,7 @@ var start = function() {
     } else {
       counter += 1;
       $("#containerOther").append(
-        "<div class='card mb-3' id='" +
-          divNumber[i] +
-          "'><img id='pictures' style='height: 200px; width: 100%; display: block;' src='" +
+        "<div class='card mb-3' id='divOne'><img id='pictures' style='height: 200px; width: 100%; display: block;' src='" +
           pictureUrls[i].url +
           "'><div class='card-body'><p class='card-text' id='comment'>" +
           pictureUrls[i].comment +

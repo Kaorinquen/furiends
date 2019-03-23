@@ -15,6 +15,23 @@ var API = {
   }
 };
 
+$(window).scroll(function() {
+  var height = $(window).scrollTop();
+  if (height > 100) {
+    $("#back2Top").fadeIn();
+  } else {
+    $("#back2Top").fadeOut();
+  }
+});
+
+$(document).ready(function() {
+  $("#back2Top").click(function(event) {
+    event.preventDefault();
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+  });
+});
+
 API.getExplorer().then(function(data) {
   for (var i = data.length - 1; i >= 0; i--) {
     pictureUrls.push(data[i]);
@@ -34,7 +51,7 @@ $(window).scroll(function() {
         $("#containerExplorer").append(
           "<div class='card mb-3' id='" +
             divNumber[i] +
-            "'><img style='height: 200px; width: 100%; display: block;' src='" +
+            "'><img id='pictures' style='height: 200px; width: 100%; display: block;' src='" +
             pictureUrls[i].url +
             "'><div class='card-body'><p class='card-text' id='comment'>" +
             pictureUrls[i].comment +
@@ -62,7 +79,7 @@ var start = function() {
       $("#containerExplorer").append(
         "<div class='card mb-3' id='" +
           divNumber[i] +
-          "'><img style='height: 200px; width: 100%; display: block;' src='" +
+          "'><img id='pictures' style='height: 200px; width: 100%; display: block;' src='" +
           pictureUrls[i].url +
           "'><div class='card-body'><p class='card-text' id='comment'>" +
           pictureUrls[i].comment +

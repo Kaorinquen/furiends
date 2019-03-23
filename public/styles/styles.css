@@ -13,24 +13,68 @@
   opacity: 0.7;
   filter: alpha(opacity=30);
 }
+
+.container{
+  padding-top: 30px;
+}
   
   header{
-  background: darkturquoise;
+  background: #42a5f5;
   border-bottom: whitesmoke solid 0.5px;
   }
   
   #login{
-  border:tomato solid 3px;
-  background: darkturquoise;
-  color: tomato;
-  }
+    border:#42a5f5 solid 3px;
+    background: #333;
+    color:#42a5f5 ;
+    border-radius: 12px;
+    font-family: margarine;
+    }
+    #login:hover {
+      background-color: whitesmoke; 
+      border-style: double;
+    color:#42a5f5 ;
+    }
   
-  #register{
-  border:tomato solid 3px;
-  background: darkturquoise;
-  color: tomato;
-  }
+    #register{
+      border:#42a5f5 solid 3px;
+      background: #333;
+      color:#42a5f5 ;
+      border-radius: 12px;
+      font-family: margarine;
+    }
   
+    #register:hover{
+      background-color: whitesmoke; 
+      border-style: double;
+      color:#42a5f5 ;
+  
+    }
+  
+  .navbar-brand{
+    color: #333;
+    font-family: 'Baloo Chettan', cursive;
+    font-size: 40px;
+    font-weight: 700;
+    position: absolute;
+  }
+
+  .navbar-brand:hover{
+    color: whitesmoke;
+  }
+
+  #dash{
+    color: #333;
+    font-family: 'Baloo Chettan', cursive;
+    font-size: 40px;
+    font-weight: 700;
+    position: absolute;
+  }
+
+  #dash:hover{
+    color: whitesmoke;
+  }
+
   .bg-modal{
   background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
@@ -51,13 +95,13 @@
     }
 
  
-  input{
-    margin: 15px auto;
-    display: block;
-    width: 50%;
-    padding: 8px;
-    border: 1px solid gray;
-  }
+    input{
+      margin: 15px auto;
+      display: block;
+      width: 50%;
+      padding: 8px;
+      border: 1px solid gray;
+    }
   
   .close{
     position: absolute;
@@ -86,6 +130,20 @@
     align-content: center;
     text-align: center;
   }
+
+  #log{
+    border:#42a5f5 solid 3px;
+  background: #333;
+  color:#42a5f5 ;
+  border-radius: 12px;
+  font-family: margarine;
+  }
+  #log:hover {
+    background-color: whitesmoke; 
+    border-style: double;
+  color:#42a5f5 ;
+  }
+
   .modal-content{
     background: white;
     text-align: center;
@@ -125,23 +183,101 @@
   transform: scale(2);
   transition: transform .2s;
   z-index: 1;
-}
-
-.jumbotron {   
-  background-size:cover;
-  margin-top: 20px 10px 10px 30px
-}
-  
-.jumbotron:hover .text {
-position:relative;
-bottom:30px;
-left:0px;
-visibility:hidden;
-color: white;
+  object-fit: contain;
 }
 
 #profileInfo{
   padding: 5%;
+  color: white;
+}
+
+body{
+  background: rgb(51,51,51);
+}
+
+
+#back2Top {
+   position: fixed;
+  right:10px;
+  bottom: 10px;
+  border:#42a5f5 double 3px;
+  background: #333;
+  color:#42a5f5 ;
+  border-radius: 12px;
+  font-weight: 700;
+}
+#back2Top:hover {
+  background-color: #DDF;
+  color: #333;
+  border:#42a5f5 double 3px;
+  background: #333;
+  color:#42a5f5 ;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* EXPLORE PAGE */
+
+#nav-explore{
+  background: #42a5f5 !important;
+  border-bottom: whitesmoke solid 0.5px;
+}
+
+#search{
+  border:#42a5f5 solid 3px;
+background: #333;
+color:#42a5f5 ;
+border-radius: 12px;
+float: left;
+
+}
+#search:hover {
+  background-color: whitesmoke; 
+  border-style: double;
+color:#42a5f5 ;
+}
+
+#input{
+  border-radius: 5px;
+  background: gray;
+  color: black;
+  margin: 0;
+}
+
+#input::placeholder{
+color:whitesmoke;
+}
+
+.home{
+  color: #333;
+  font-size: 30px;
+  font-weight: 700;
+  padding: 0;
+  text-align: center;
+  
+}
+
+.home:hover{
+  color: whitesmoke;
+}
+
+#find{
+border:#42a5f5 solid 3px;
+background: #333;
+color:#42a5f5 ;
+border-radius: 12px;
+font-family: margarine;
+}
+#find:hover {
+  background-color: whitesmoke; 
+  border-style: double;
+color:#42a5f5 ;
+}
+
+/* CSS for cards */
+
+.card-body{
+  font-size: 20px;
 }
 
 .clear {
